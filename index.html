@@ -1177,7 +1177,34 @@ let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(!re
 /* ---------- share ---------- */
 $('#share').addEventListener('click',async()=>{
   const lbl=$('#share span'),web=/^https?:$/.test(location.protocol);
-  const msg='You are invited to the wedding of Nandhini G & Karthick M\nSunday, 13 December 2026 · Muhurtham 11:00 AM\nSS Mahal, Radhapuram, Tamil Nadu 627111\nMap: https://maps.google.com/?q=SS+Mahal+7M7P%2BJCR+Radhapuram';
+  /* nicely spaced invitation message (WhatsApp / SMS / any share target) */
+  const msg=[
+    '✨ திருமண அழைப்பிதழ் ✨',
+    '*Wedding Invitation*',
+    '',
+    'With the blessings of the Almighty',
+    'and our beloved families,',
+    '',
+    '💍 *Nandhini G & Karthick M* 💍',
+    '',
+    'cordially invite you to celebrate their wedding.',
+    '',
+    '📅 *Date:* Sunday, 13 December 2026',
+    '⏰ *Muhurtham:* 11:00 AM',
+    '',
+    '📍 *Venue:*',
+    'SS Mahal, Radhapuram',
+    'Tamil Nadu 627111',
+    '(Near Atrangarai Palli Vasal, SSV Street)',
+    '',
+    '🗺️ *Location:*',
+    'https://maps.google.com/?q=SS+Mahal+7M7P%2BJCR+Radhapuram',
+    '',
+    'Your presence and blessings will make our day truly special. 🙏',
+    '',
+    'With love,',
+    'Nandhini & Karthick ❤️'
+  ].join('\n');
   const flash=t=>{lbl.textContent=t;clearTimeout(flash.t);flash.t=setTimeout(()=>lbl.textContent='Share Invitation',2600)};
   const copy=async txt=>{
     try{await navigator.clipboard.writeText(txt);return true}catch(e){}
@@ -1188,7 +1215,7 @@ $('#share').addEventListener('click',async()=>{
   if(navigator.share&&(!navigator.canShare||navigator.canShare(data))){
     try{await navigator.share(data);return}catch(e){if(e.name==='AbortError')return}
   }
-  const full=msg+(web?'\n'+location.href:'');
+  const full=msg+(web?'\n\n💌 *Open the invitation:*\n'+location.href:'');
   if(await copy(full))flash('Copied ♥ — paste to share');
   else window.open('https://wa.me/?text='+encodeURIComponent(full),'_blank','noopener');
 });
