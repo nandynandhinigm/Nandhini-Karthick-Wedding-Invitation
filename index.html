@@ -233,9 +233,8 @@ body.opened .music{opacity:1;transform:none}
 }
 .bell{position:absolute;top:0;width:clamp(26px,3.6vw,40px);z-index:3;transform-origin:50% 0;animation:swing 3.6s ease-in-out infinite;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4))}
 .bell.b1{left:16%}.bell.b2{left:24%;animation-delay:-1.2s;width:clamp(20px,2.8vw,32px)}
-.bell.b3{right:16%;animation-delay:-.6s}.bell.b4{right:24%;animation-delay:-2s;width:clamp(20px,2.8vw,32px)}
-/* bells on the left side only, so none hang over the Buddha */
-.bell.b3,.bell.b4{display:none}
+/* right pair mirrors the left pair (big outer, small inner), nudged toward the corner so it clears the Buddha */
+.bell.b3{right:11%;animation-delay:-.6s}.bell.b4{right:18%;animation-delay:-2s;width:clamp(20px,2.8vw,32px)}
 @keyframes swing{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-5deg)}}
 .hero .mandala{position:absolute;width:min(130vw,980px);aspect-ratio:1;left:50%;top:50%;translate:-50% -50%;color:var(--gold-l);opacity:.12;animation:spin 160s linear infinite;z-index:0}
 @keyframes spin{to{rotate:360deg}}
@@ -268,15 +267,12 @@ body.opened .h-in:nth-child(5){transition-delay:.95s}body.opened .h-in:nth-child
 .person .pname{font-family:var(--script);font-size:clamp(52px,7vw,86px);line-height:1;color:var(--velvet);margin:6px 0 0}
 .person .pinit{font-family:var(--caps);letter-spacing:.4em;color:var(--gold-d);font-size:14px;margin:0}
 .person .pline{font-style:italic;color:var(--ink-soft);margin:6px 0 0;font-size:19px}
-.coin{width:118px;height:118px;perspective:700px;margin-bottom:10px}
-.coin-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:coin 9s ease-in-out infinite}
-.groom .coin-in{animation-delay:-4.5s}
-.coin-f,.coin-b{position:absolute;inset:0;border-radius:50%;display:grid;place-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.coin{width:118px;height:118px;margin-bottom:10px}
+/* static monogram coins: N / K only */
+.coin-in{position:relative;width:100%;height:100%}
+.coin-f{position:absolute;inset:0;border-radius:50%;display:grid;place-items:center}
 .coin-f{background:radial-gradient(circle at 32% 28%,#fff3c8,#e3bd6c 40%,#a7772d 75%,#7a5419);box-shadow:inset 0 0 0 4px rgba(122,84,25,.6),inset 0 0 0 9px #f4d993,inset 0 0 0 10px rgba(122,84,25,.5),0 14px 28px rgba(74,13,29,.35)}
 .coin-f span{font-family:var(--script);font-size:64px;color:#5d0f22;text-shadow:0 1px 0 rgba(255,240,200,.8);transform:translateY(4px)}
-.coin-b{transform:rotateY(180deg);background:radial-gradient(circle at 32% 28%,#a33352,#6a1028 60%,#43081a);box-shadow:inset 0 0 0 4px var(--gold),inset 0 0 0 9px #6a1028,inset 0 0 0 10px var(--gold),0 14px 28px rgba(74,13,29,.35)}
-.coin-b svg{width:62%;height:62%}
-@keyframes coin{0%,30%{transform:rotateY(0)}50%,80%{transform:rotateY(180deg)}100%{transform:rotateY(360deg)}}
 
 .arch-wrap{perspective:1100px}
 .arch3d{position:relative;width:min(76vw,360px);aspect-ratio:3/4.1;transform-style:preserve-3d;transition:transform .5s ease-out;will-change:transform}
@@ -504,14 +500,14 @@ body.opened .h-in:nth-child(5){transition-delay:.95s}body.opened .h-in:nth-child
   .cal-grid span.day13::after{top:-8px;right:-6px;font-size:10px}
   .cal-note{font-size:16px;margin-top:6px}
   .date-strip{gap:10px;letter-spacing:.12em}
-  .bell.b1{left:8%}.bell.b2{left:22%}
+  .bell.b1{left:8%}.bell.b2{left:22%}.bell.b3{right:8%}.bell.b4{right:22%}
   .scratch{aspect-ratio:auto;min-height:340px}
   .person .pline{font-size:16px}
 }
 /* gentle mode: keep the celebration, drop large continuous motion */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .mandala,.b-rays,.b-glow,.hero-bg img,.velvet::after,.om-medal::before,.arch3d,.coin-in,.bell,.map-pin::before{animation:none!important}
+  .mandala,.b-rays,.b-glow,.hero-bg img,.velvet::after,.om-medal::before,.arch3d,.bell,.map-pin::before{animation:none!important}
   [data-reveal],[data-reveal="left"],[data-reveal="right"],[data-reveal="zoom"]{transform:none;filter:none}
 }
 </style>
@@ -761,7 +757,7 @@ body.opened .h-in:nth-child(5){transition-delay:.95s}body.opened .h-in:nth-child
   </div>
   <div class="couple-stage">
    <article class="person bride" data-reveal="left">
-    <div class="coin"><div class="coin-in"><div class="coin-f"><span>N</span></div><div class="coin-b"><svg viewBox="-60 -60 120 120"><use href="#roseW"/></svg></div></div></div>
+    <div class="coin"><div class="coin-in"><div class="coin-f"><span>N</span></div></div></div>
     <span class="kicker">The Bride</span>
     <h3 class="pname">Nandhini</h3>
     <!-- <p class="pinit">G</p> -->
@@ -775,7 +771,7 @@ body.opened .h-in:nth-child(5){transition-delay:.95s}body.opened .h-in:nth-child
     </div>
    </div>
    <article class="person groom" data-reveal="right">
-    <div class="coin"><div class="coin-in"><div class="coin-f"><span>K</span></div><div class="coin-b"><svg viewBox="-60 -60 120 120"><use href="#roseR"/></svg></div></div></div>
+    <div class="coin"><div class="coin-in"><div class="coin-f"><span>K</span></div></div></div>
     <span class="kicker">The Groom</span>
     <h3 class="pname">Karthick</h3>
     <!-- <p class="pinit">M</p> -->
@@ -997,13 +993,15 @@ const sp=$('#archSpark');[[8,12],[90,20],[14,60],[86,70],[50,4],[30,90],[72,92]]
 
 /* ---------- particles (petals + glow) ---------- */
 const cv=$('#fx'),cx=cv.getContext('2d');let W,H,DPR;
-function size(){DPR=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0)}
+/* phones / tablets: draw the soft glow layer at 1x resolution and use fewer particles so scrolling stays smooth */
+const lowPower=matchMedia('(pointer:coarse)').matches||innerWidth<700;
+function size(){DPR=lowPower?1:Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0)}
 size();addEventListener('resize',size);
 const glow=document.createElement('canvas');glow.width=glow.height=64;{const g=glow.getContext('2d'),r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,248,220,1)');r.addColorStop(.25,'rgba(250,215,140,.8)');r.addColorStop(1,'rgba(201,161,90,0)');g.fillStyle=r;g.fillRect(0,0,64,64)}
 const petalCols=['#8e1b33','#b3284a','#d4566e','#f2c2c8','#fff3e6','#a01f3c'];
-const mob=W<700,R=Math.random;
-const petals=Array.from({length:(mob?16:30)*(reduce?.6:1)|0},()=>newPetal(true));
-const glows=Array.from({length:mob?22:44},()=>({x:R()*W,y:R()*H,r:4+R()*11,vy:-.1-R()*.35,vx:(R()-.5)*.2,p:R()*6.28,sp:.01+R()*.03}));
+const mob=lowPower,R=Math.random;
+const petals=Array.from({length:(mob?10:30)*(reduce?.6:1)|0},()=>newPetal(true));
+const glows=Array.from({length:mob?12:44},()=>({x:R()*W,y:R()*H,r:4+R()*11,vy:-.1-R()*.35,vx:(R()-.5)*.2,p:R()*6.28,sp:.01+R()*.03}));
 let burst=[];
 function newPetal(any){return{x:R()*W,y:any?R()*H:-30,s:6+R()*9,vy:.5+R()*1,vx:(R()-.5)*.6,rot:R()*6.28,vr:(R()-.5)*.04,f:R()*6.28,vf:.02+R()*.05,sw:R()*6.28,c:petalCols[R()*petalCols.length|0],a:.55+R()*.4}}
 function drawPetal(p){cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.scale(1,Math.cos(p.f)*.9+.1);cx.globalAlpha=p.a;cx.fillStyle=p.c;const s=p.s;
@@ -1016,17 +1014,30 @@ function frame(t){
   cx.globalCompositeOperation='lighter';
   for(const g of glows){g.p+=g.sp;g.y+=g.vy;g.x+=g.vx+Math.sin(g.p)*.15;if(g.y<-30){g.y=H+20;g.x=R()*W}
     const a=.15+.45*(.5+.5*Math.sin(g.p*2));cx.globalAlpha=a;cx.drawImage(glow,g.x-g.r,g.y-g.r,g.r*2,g.r*2)}
-  for(const b of burst){b.x+=b.vx;b.y+=b.vy;b.vy+=.06;b.vx*=.985;b.life-=.012;cx.globalAlpha=Math.max(0,b.life);cx.drawImage(glow,b.x-b.r,b.y-b.r,b.r*2,b.r*2)}
+  for(const b of burst){b.x+=b.vx;b.y+=b.vy;b.vy+=.06;b.vx*=.985;b.life-=b.d;cx.globalAlpha=Math.max(0,b.life);cx.drawImage(glow,b.x-b.r,b.y-b.r,b.r*2,b.r*2)}
   cx.globalCompositeOperation='source-over';
   for(const b of burst)if(b.petal){b.p.x=b.x;b.p.y=b.y;b.p.rot+=b.p.vr*3;b.p.f+=b.p.vf;b.p.a=Math.max(0,b.life);drawPetal(b.p)}
   burst=burst.filter(b=>b.life>0);
   for(const p of petals){p.sw+=.02;p.y+=p.vy;p.x+=p.vx+Math.sin(p.sw)*.6;p.rot+=p.vr;p.f+=p.vf;if(p.y>H+30||p.x<-40||p.x>W+40)Object.assign(p,newPetal(false));drawPetal(p)}
   cx.globalAlpha=1;requestAnimationFrame(frame)
 }
-function sparkle(x,y,n=26,withPetals=false){for(let i=0;i<n;i++){const a=R()*6.28,v=1.5+R()*4.5;const b={x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-2,r:5+R()*12,life:1};if(withPetals&&i%2){b.petal=true;b.p=newPetal(true)}burst.push(b)}}
+/* light = small, quick tap glitter; big celebration bursts are scaled down on phones and the total is capped */
+function sparkle(x,y,n=26,withPetals=false,light=false){
+  if(lowPower&&!light)n=Math.ceil(n*.45);
+  n=Math.min(n,Math.max(0,(lowPower?50:150)-burst.length));
+  for(let i=0;i<n;i++){const a=R()*6.28,v=(light?1:1.5)+R()*(light?2.5:4.5);
+    const b={x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-(light?1:2),r:light?3+R()*6:5+R()*12,life:1,d:light?.035:.012};
+    if(withPetals&&i%2){b.petal=true;b.p=newPetal(true)}burst.push(b)}}
 document.addEventListener('visibilitychange',()=>{running=!document.hidden;if(running)requestAnimationFrame(frame)});
 requestAnimationFrame(frame);
-addEventListener('pointerdown',e=>{if(e.target.closest('#scratchCanvas,button,a,iframe'))return;sparkle(e.clientX,e.clientY,18)});
+/* tap glitter only on a real tap (not when a finger starts a scroll), at most ~4 per second */
+let tap=null,lastTap=0;
+addEventListener('pointerdown',e=>{tap=e.target.closest('#scratchCanvas,button,a,iframe')?null:{x:e.clientX,y:e.clientY,t:performance.now()}},{passive:true});
+addEventListener('pointercancel',()=>{tap=null},{passive:true});
+addEventListener('pointerup',e=>{
+  if(!tap)return;const now=performance.now(),ok=Math.hypot(e.clientX-tap.x,e.clientY-tap.y)<12&&now-tap.t<400&&now-lastTap>250;tap=null;
+  if(ok){lastTap=now;sparkle(e.clientX,e.clientY,lowPower?6:12,false,true)}
+},{passive:true});
 
 /* ---------- music (original melody, Web Audio) ---------- */
 let ac,master,playing=false,timer,nextT=0,step=0;
